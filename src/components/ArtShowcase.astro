@@ -2,7 +2,6 @@
 import type { CollectionEntry } from "astro:content";
 import ArtistCard from "./ArtistCard.astro";
 import ArtDescription from "./ArtDescription.astro";
-import Tooltip from "./Tooltip.astro";
 
 type Props = {
   artists: CollectionEntry<"artists">[];
@@ -17,7 +16,6 @@ const grid = "artists";
 
 </section>
 
-<Tooltip grid={grid} />
 
 
 <style>

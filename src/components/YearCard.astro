@@ -1,0 +1,45 @@
+---
+import { Image } from "astro:assets";
+import type { CollectionEntry } from "astro:content";
+
+type Props = {
+  title: String;
+  pieces: CollectionEntry<"artists">[];
+};
+
+const { title, pieces } = Astro.props;
+
+const myPieces = pieces
+const ind: number = Math.floor(Math.random() * myPieces.length);
+---
+<div>
+<a href={`/${title}`} class="header">{title}</a>
+<a
+  href={`/${title}`}
+  style={`--image: url('${myPieces[ind].data.image.src}');`}
+  class="artist"
+  >
+</a>
+</div>
+
+<style>
+  .artist {
+    background-image: var(--image);
+    background-size: cover;
+    background-position: 50% 0%;
+    aspect-ratio: 0.8;
+    font-size: xx-large;
+    font-weight: bold;
+    display: flex;
+    text-align: center;
+    justify-content: center;
+    
+  }
+  .header {
+    font-size: xx-large;
+    font-weight: bold;
+    display: flex;
+    text-align: center;
+    justify-content: center;
+  }
+</style>
