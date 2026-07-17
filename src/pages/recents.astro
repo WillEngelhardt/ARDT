@@ -1,0 +1,19 @@
+---
+import { getCollection } from "astro:content";
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Preloader from "../components/Preloader.astro";
+import ArtShowcase from "../components/ArtShowcase.astro";
+import ArtistGrid from "../components/ArtistGrid.astro";
+import ArtistGridHeader from "../components/ArtistGridHeader.astro";
+
+const allArtists = await getCollection("artists");
+const title = "ARDT of Emily - Recent works";
+---
+
+<BaseLayout title={title}>
+ 
+  <ArtistGridHeader artistsTotal={allArtists.length} />
+  <ArtShowcase artists={allArtists} />
+
+</BaseLayout>
+<script src="../scripts/index.js"></script>

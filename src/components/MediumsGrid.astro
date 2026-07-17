@@ -1,0 +1,51 @@
+---
+import type { CollectionEntry } from "astro:content";
+import ArtistCard from "./ArtistCard.astro";
+import Tooltip from "./Tooltip.astro";
+import MediumsCard from "./MediumsCard.astro";
+import { getCollection } from "astro:content";
+
+type Props = {
+  artists: CollectionEntry<"artists">[];
+};
+
+const { artists } = Astro.props;
+const grid = "artists";
+const pieces = await getCollection("artists");
+
+const mediums = ["Watercolor", "Oil", "Acrylic", "Digital", "Gouache", "Other"];
+for (let i = mediums.length-1; i >= 0; i--) {
+  // first test if mediums[i] is a valid property in the data of any piece
+  if ((!pieces.some((piece) => piece.data.hasOwnProperty(mediums[i]))) ||
+      (pieces.filter((piece) => piece.data[mediums[i]] == 1.0).length === 0)) {
+    // removes medium if not a property
+    mediums.splice(i, 1);
+  }
+}
+---
+
+<section class="artist-grid" id="grid" data-grid={grid}>
+  {mediums.map((medium) => <MediumsCard title={medium} pieces={
+    pieces.filter((piece) => piece.data[medium] == 1.0)
+  } />)}
+</section>
+
+<Tooltip grid={grid} />
+
+<style>
+  section {
+    position: relative;
+    overflow: hidden;
+    display: grid;
+    width: 100%;
+    grid-template-columns: repeat(1, calc(100% / 1));
+    margin: 1rem 0 10rem;
+    min-height: 400px;
+    @media screen and (min-width: 30em) {
+      grid-template-columns: repeat(2, calc(100% / 2));
+    }
+    @media screen and (min-width: 50em) {
+      grid-template-columns: repeat(3, calc(100% / 3));
+    }
+  }
+</style>

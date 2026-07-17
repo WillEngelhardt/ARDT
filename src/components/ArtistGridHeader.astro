@@ -11,9 +11,12 @@ type Props = {
 const { artistsTotal } = Astro.props;
 ---
 
-<header class="title-header title-header--initial">
-  <h2><TextSlider content="Artists" /></h2>
+<!-- <header class="title-header title-header--initial">
+  <h2><TextSlider content="ARDT of Emily" /></h2>
   <div>
+    <a
+      href="/recents/"
+      data-astro-prefetch><TextSlider content="Recents" /></a>
     <button data-sort><TextSlider content="Sort" /></button>
     <button data-shuffle><TextSlider content="Shuffle" /></button>
     <div>
@@ -28,7 +31,7 @@ const { artistsTotal } = Astro.props;
 </header>
 
 <Separator />
-<Search />
+<Search /> -->
 
 <style>
   div {

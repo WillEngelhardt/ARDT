@@ -1,0 +1,39 @@
+---
+import type { CollectionEntry } from "astro:content";
+import { getCollection, render } from "astro:content";
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Separator from "../components/Separator.astro";
+import AlbumGrid from "../components/AlbumGrid.astro";
+import ArtistGrid from "../components/ArtistGrid.astro";
+import ArtShowcase from "../components/ArtShowcase.astro";
+
+export async function getStaticPaths() {
+  return [
+    { params: { medium: "Watercolor" } },
+    { params: { medium: "Oil" } },
+    { params: { medium: "Acrylic" } },
+    { params: { medium: "Digital" } },
+    { params: { medium: "Gouache" } },
+    { params: { medium: "Other" } },
+  ];
+}
+const pieces = await getCollection("artists");
+
+type Props = {
+  pieces: CollectionEntry<"artists">[]; // Array of all artists in the collection
+  date: String; // Current artist being rendered
+};
+
+const { medium } = Astro.params;
+
+
+
+// Render the content of the current artist (e.g., markdown or MDX)
+//const { Content } = await render(artist);
+const fPieces = pieces.filter((piece) => piece.data[medium] == 1.0)
+---
+
+<BaseLayout title={medium}>
+  <ArtShowcase artists={fPieces}/>
+</BaseLayout>
+

@@ -27,10 +27,10 @@ export const getStaticPaths = async () => {
 
   const paths = await Promise.all(
     albums.map(async (album) => {
-      const artist = await getEntry("artists", album.data.artist.id); // Fetch artist by ID
+      const artist = await getEntry("artists", album.data.artist); // Fetch artist by ID
       return {
         params: {
-          artist_id: album.data.artist.id, // Include artist ID in route parameters
+          artist_id: album.data.artist, // Include artist ID in route parameters
           album_id: album.id, // Include album ID in route parameters
         },
         props: {
@@ -61,7 +61,7 @@ const { Content } = await render(album);
     <header class="title-header">
       <h2>
         {album.data.name}
-        <span class="faded">by {artist.data.stage_name}</span>
+        <span class="faded">by {artist.data.name}</span>
       </h2>
       <div><a class="back" href={`/${artist.id}`}>Back to artist</a></div>
     </header>

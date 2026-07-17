@@ -25,3 +25,9 @@ pnpm-debug.log*
 
 # Visual Studio Code settings
 .vscode/
+
+# Art images
+public/art/
+
+# Image data
+src/images/

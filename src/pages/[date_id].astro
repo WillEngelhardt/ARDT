@@ -1,0 +1,55 @@
+---
+import type { CollectionEntry } from "astro:content";
+import { getCollection, render } from "astro:content";
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Separator from "../components/Separator.astro";
+import AlbumGrid from "../components/AlbumGrid.astro";
+import ArtistGrid from "../components/ArtistGrid.astro";
+import ArtShowcase from "../components/ArtShowcase.astro";
+
+export const getStaticPaths = async () => {
+  // Fetch all artists from the 'artists' collection
+  const artists = await getCollection("artists");
+  const uniqueDateSet = new Set(artists.map(item => item.data.Date));
+  let dateArray = []
+  for (var date of uniqueDateSet) {
+    dateArray.push([date, artists.filter((art) => art.data.Date === date)])
+  }
+  const paths = dateArray.map((art) => {
+    let date = art[0];
+    let pieces = art[1];
+    return {
+      params: { date_id: art[0] }, // URL parameter for the artist's ID
+      props: { pieces, date }, // Pass the full artist and all artists as props
+    };
+  });
+
+  // Map over the artists to generate paths for each artist's page
+  // const paths = artists.map((artist) => {
+  //   return {
+  //     params: { date_id: artist.data.Date }, // URL parameter for the artist's ID
+  //     props: { artists, artist }, // Pass the full artist and all artists as props
+  //   };
+  // });
+
+  // Return the generated paths to Astro for static page generation
+  return paths;
+};
+
+type Props = {
+  pieces: CollectionEntry<"artists">[]; // Array of all artists in the collection
+  date: String; // Current artist being rendered
+};
+
+const { pieces, date } = Astro.props; // Extract the artists list and current artist from the props
+
+
+
+// Render the content of the current artist (e.g., markdown or MDX)
+//const { Content } = await render(artist);
+---
+
+<BaseLayout title="testTiel">
+  <ArtShowcase artists={pieces}/>
+</BaseLayout>
+

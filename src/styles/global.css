@@ -15,7 +15,7 @@
   --color-bg: #fff;
   --border-color: #ccc;
   --color-link: #000;
-  --color-link-hover: #999;
+  --color-link-hover: hwb(221 46% 0%);
   --color-placeholder: #f8f8f8;
   --font-size-s: 0.85rem;
   --font-size-l: clamp(1.25rem, 3vw, 1.75rem);
@@ -38,21 +38,21 @@ body {
     pointer-events: none;
   }
 }
-
+/* 
 h2 {
-  font-size: var(--font-size-xl);
+  font-size: var(--font-size-l);
   margin: 0;
   line-height: 0.85;
 }
 
 h3 {
   font-size: 1rem;
-  margin-bottom: 2.5rem;
+  margin-bottom: 1rem;
 }
 
 p+h3 {
   margin-top: 4rem;
-}
+} */
 
 a {
   text-decoration: none;
