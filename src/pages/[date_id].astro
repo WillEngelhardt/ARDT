@@ -6,6 +6,7 @@ import Separator from "../components/Separator.astro";
 import AlbumGrid from "../components/AlbumGrid.astro";
 import ArtistGrid from "../components/ArtistGrid.astro";
 import ArtShowcase from "../components/ArtShowcase.astro";
+import MasonryGrid from "../components/MasonryGrid.astro";
 
 export const getStaticPaths = async () => {
   // Fetch all artists from the 'artists' collection
@@ -50,6 +51,6 @@ const { pieces, date } = Astro.props; // Extract the artists list and current ar
 ---
 
 <BaseLayout title="testTiel">
-  <ArtShowcase artists={pieces}/>
+  <MasonryGrid artists={pieces} />
 </BaseLayout>
 

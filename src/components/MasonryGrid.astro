@@ -1,0 +1,54 @@
+---
+import type { CollectionEntry } from "astro:content";
+import ArtistCard from "./ArtistCard.astro";
+import MasronyCard from "./MasronyCard.astro";
+import Tooltip from "./Tooltip.astro";
+import { Masonry } from 'astro-masonry';
+import { imageConfig } from "astro:assets";
+
+type Props = {
+  artists: CollectionEntry<"artists">[];
+};
+
+const { artists } = Astro.props;
+const grid = "artists";
+
+
+---
+<section
+  class="artist-grid"
+  data-grid={grid}>
+<Masonry
+  breakpointCols={{
+  default: 4, // Default column count
+  1100: 3,    // 3 columns at viewport width <= 1100px
+  700: 2,     // 2 columns at viewport width <= 700px
+  500: 1      // 1 column at viewport width <= 500px
+}}
+  debug={true}
+>
+
+  {artists.map((artist) => <MasronyCard artist={artist}/>)}
+
+</Masonry>
+</section>
+<Tooltip grid={grid} />
+
+<style>
+  Masonry {
+    position: relative;
+    overflow: hidden;
+    display: grid;
+    width: 100%;
+    grid-template-columns: repeat(1, calc(100% / 1));
+    margin: 1rem 0 10rem;
+    min-height: 400px;
+    @media screen and (min-width: 30em) {
+      grid-template-columns: repeat(2, calc(100% / 2));
+    }
+    @media screen and (min-width: 50em) {
+      grid-template-columns: repeat(3, calc(100% / 3));
+    }
+  }
+
+</style>

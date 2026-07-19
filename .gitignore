@@ -27,7 +27,7 @@ pnpm-debug.log*
 .vscode/
 
 # Art images
-public/art/
+src/art/
 
 # Image data
 src/images/

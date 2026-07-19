@@ -28,7 +28,7 @@ const sortedYears = Array.from(uniqueYears).sort((a, b) => b - a);
 console.log(uniqueYears);
 ---
 
-<section class="artist-grid" id="grid" data-grid={grid}>
+<section >
   {Array.from(sortedYears).map((year) => <YearCard title={year} pieces={
     pieces.filter((piece) => piece.data.Date === year)
   } />)}

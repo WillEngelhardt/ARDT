@@ -11,7 +11,7 @@ const { artists } = Astro.props;
 const grid = "artists";
 ---
 
-<section class="artist-grid" id="grid" data-grid={grid}>
+<section class="artist-grid row" data-grid={grid}>
   {artists.map((artist) => <ArtistCard artist={artist} />)}
 </section>
 
@@ -33,4 +33,7 @@ const grid = "artists";
       grid-template-columns: repeat(3, calc(100% / 3));
     }
   }
+  .row {
+  }
+
 </style>

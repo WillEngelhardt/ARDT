@@ -4,7 +4,7 @@ import { getCollection, render } from "astro:content";
 import BaseLayout from "../layouts/BaseLayout.astro";
 import Separator from "../components/Separator.astro";
 import AlbumGrid from "../components/AlbumGrid.astro";
-import ArtistGrid from "../components/ArtistGrid.astro";
+import MasonryGrid from "../components/MasonryGrid.astro";
 import ArtShowcase from "../components/ArtShowcase.astro";
 
 export async function getStaticPaths() {
@@ -34,7 +34,7 @@ const fPieces = pieces.filter((piece) => piece.data[medium] == 1.0)
 ---
 
 <BaseLayout title={medium}>
-  <ArtistGrid artists={fPieces}/>
+  <MasonryGrid artists={fPieces} />
 </BaseLayout>
 <script src="../scripts/index.js"></script>
 

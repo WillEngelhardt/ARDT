@@ -3,6 +3,8 @@ import gsap from 'gsap';
 class Tooltip {
   constructor(gridEl) {
     this.grid = gridEl;
+    //masonry is organized by columns, but children still gets images
+    this.columns = this.grid.children;
     this.artists = this.grid.children;
     if (this.artists.length === 0) return;
     this.tooltip = document.querySelector('.tooltip');
@@ -305,7 +307,10 @@ const handlePageEvent = (type) => {
   // if (page !== 'home') return;
 
   if (type === 'load') {
-    tooltip = new Tooltip(document.querySelector('[data-grid]'));
+    const g = document.querySelector('[data-grid]')
+    if (g == null) return;
+    // g is section container, first child is the grid
+    tooltip = new Tooltip(g.children[0]);
   } else if (type === 'before-swap') {
     tooltip.destroy();
   }
