@@ -21,7 +21,7 @@ const grid = "artists";
 <Masonry
   breakpointCols={{
   default: 4, // Default column count
-  1100: 3,    // 3 columns at viewport width <= 1100px
+  1500: 3,    // 3 columns at viewport width <= 1100px
   700: 2,     // 2 columns at viewport width <= 700px
   500: 1      // 1 column at viewport width <= 500px
 }}
@@ -41,7 +41,7 @@ const grid = "artists";
     display: grid;
     width: 100%;
     grid-template-columns: repeat(1, calc(100% / 1));
-    margin: 1rem 0 10rem;
+    margin: 3rem 0 10rem;
     min-height: 400px;
     @media screen and (min-width: 30em) {
       grid-template-columns: repeat(2, calc(100% / 2));

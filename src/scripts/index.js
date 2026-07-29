@@ -12,7 +12,7 @@ let animationTimeline; // GSAP timeline instance
 const initializeVariables = () => {
   lines = document.querySelectorAll('hr');
   textSliders = document.querySelectorAll('header .oh > .oh__inner');
-  gridContainer = document.querySelector('[data-grid]');
+  gridContainer = document.querySelector('[data-grid]').children[0];
   gridItems = gridContainer ? Array.from(gridContainer.children) : [];
   hasPreloaderComponent = document.querySelector('.loading');
 };

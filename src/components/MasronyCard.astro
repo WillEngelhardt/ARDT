@@ -24,7 +24,7 @@ if (!images[artist.data.image.src]) throw new Error(`"${artist.data.image.src}" 
   aria-label={artist.data.name}>
 
   <Image src={images[artist.data.image.src]()} alt={artist.data.name} inferSize={true} 
-        class="w-full mb-4 test" loading="lazy"></Image>
+        class="test" loading="lazy"></Image>
 </a>
 
 <style>
@@ -34,9 +34,8 @@ if (!images[artist.data.image.src]) throw new Error(`"${artist.data.image.src}" 
     background-position: 50% 0%;
     aspect-ratio: 1;
   } */
-  .test {
-    width: 100%;
-    height: 100%;
-  }
+   .test {
+    padding: 5px;
+   }
 
 </style>
