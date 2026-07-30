@@ -8,13 +8,15 @@ import { imageConfig } from "astro:assets";
 
 type Props = {
   artists: CollectionEntry<"artists">[];
+  title: String;
 };
 
-const { artists } = Astro.props;
+const { artists, title } = Astro.props;
 const grid = "artists";
 
 
 ---
+<span class="text-4xl flex justify-center">{title}</span>
 <section
   class="artist-grid"
   data-grid={grid}>
@@ -22,7 +24,7 @@ const grid = "artists";
   breakpointCols={{
   default: 4, // Default column count
   1500: 3,    // 3 columns at viewport width <= 1100px
-  700: 2,     // 2 columns at viewport width <= 700px
+  1000: 2,     // 2 columns at viewport width <= 700px
   500: 1      // 1 column at viewport width <= 500px
 }}
   debug={true}
@@ -43,10 +45,10 @@ const grid = "artists";
     grid-template-columns: repeat(1, calc(100% / 1));
     margin: 3rem 0 10rem;
     min-height: 400px;
-    @media screen and (min-width: 30em) {
+    @media screen and (min-width: 40em) {
       grid-template-columns: repeat(2, calc(100% / 2));
     }
-    @media screen and (min-width: 50em) {
+    @media screen and (min-width: 120em) {
       grid-template-columns: repeat(3, calc(100% / 3));
     }
   }

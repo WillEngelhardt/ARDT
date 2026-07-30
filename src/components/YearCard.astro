@@ -12,7 +12,7 @@ const { title, pieces } = Astro.props;
 const myPieces = pieces
 const ind: number = Math.floor(Math.random() * myPieces.length);
 ---
-<div>
+<div class="sectionCard">
 <a href={`/${title}`} class="header">{title}</a>
 <a
   href={`/${title}`}

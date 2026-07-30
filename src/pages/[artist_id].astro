@@ -77,11 +77,13 @@ console.log(images);
       </div>
     </header> -->
     <!-- <Separator /> -->
-     <span class="header text-4xl italic"><u class="myUnderline">{artist.data.name}</u></span>
+     <span class="header text-4xl italic">{artist.data.name}</span>
      <span class="header text-2xl">{artist.data.Materials}</span>
+     <span class="header text-2xl">{artist.data.Date}</span>
+     <span class="header text-2xl">{artist.data.Dimensions}</span>
      <!-- <h4 class="header"><i>{artist.data.Date}</i></h4> -->
-      
-      <span class="header text-xl">{artist.data.Date}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{artist.data.Dimensions}</span>
+<!--       
+      <span class="header text-xl">{artist.data.Date}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{artist.data.Dimensions}</span> -->
 <div class="product-gallery md:grid md:grid-cols-2 ">
   <div></div>
   <div class="mainImgDiv">
@@ -173,7 +175,18 @@ console.log(images);
             btn.addEventListener("click", () => {
                 const newSrc = btn.getAttribute("data-image");
                 if (newSrc && mainImage) {
+                  mainImage.animate({
+                    opacity: 0,
+                  }, {
+                    duration: 200,
+                  }).addEventListener("finish", function(){
                     mainImage.src = newSrc;
+                    mainImage.animate({
+                      opacity: 0
+                    }, {duration: 200, direction: "reverse", easing: "ease-in-out"}).addEventListener("finish", function(){
+
+                    })
+                  })
 
                     // Update active state
                     thumbnailBtns.forEach((b) => {

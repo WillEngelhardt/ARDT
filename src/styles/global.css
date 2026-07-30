@@ -40,6 +40,24 @@ body {
     pointer-events: none;
   }
 }
+.sectionCard {
+  padding: 5px;
+}
+.SectionGrid {
+  position: relative;
+  overflow: hidden;
+  display: grid;
+  width: 100%;
+  grid-template-columns: repeat(1, calc(100% / 1));
+  margin: 1rem 0 10rem;
+  min-height: 400px;
+  @media screen and (min-width: 30em) {
+    grid-template-columns: repeat(2, calc(100% / 2));
+  }
+  @media screen and (min-width: 50em) {
+    grid-template-columns: repeat(3, calc(100% / 3));
+  }
+}
 /* 
 h2 {
   font-size: var(--font-size-l);

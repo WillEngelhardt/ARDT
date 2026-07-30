@@ -24,7 +24,7 @@ for (let i = portfolio.length-1; i >= 0; i--) {
 }
 ---
 
-<section class="artist-grid" id="grid" data-grid={grid}>
+<section class="artist-grid SectionGrid" id="grid" data-grid={grid}>
   {portfolio.map((medium) => <MediumsCard title={medium} pieces={
     pieces.filter((piece) => piece.data[medium] == 1.0)
   } />)}
@@ -32,19 +32,5 @@ for (let i = portfolio.length-1; i >= 0; i--) {
 
 
 <style>
-  section {
-    position: relative;
-    overflow: hidden;
-    display: grid;
-    width: 100%;
-    grid-template-columns: repeat(1, calc(100% / 1));
-    margin: 1rem 0 10rem;
-    min-height: 400px;
-    @media screen and (min-width: 30em) {
-      grid-template-columns: repeat(2, calc(100% / 2));
-    }
-    @media screen and (min-width: 50em) {
-      grid-template-columns: repeat(3, calc(100% / 3));
-    }
-  }
+
 </style>
