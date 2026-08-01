@@ -45,12 +45,25 @@ type Props = {
 const { pieces, date } = Astro.props; // Extract the artists list and current artist from the props
 
 
+const allPieces = await getCollection("artists");
+// Calculate the index of the "next" artist in the array (wrap around if at the last artist)
+const previousYear =  Number(date) - 1;
+// find last year
+const uniqueYears = new Set(allPieces.map((piece) => piece.data.Date));
+const yearsArr = Array.from(uniqueYears).sort((a,b) => b-a);
+console.log(yearsArr);
+const destination = (previousYear === yearsArr.pop() - 1) ? yearsArr[0] : previousYear;
 
 // Render the content of the current artist (e.g., markdown or MDX)
 //const { Content } = await render(artist);
 ---
 
 <BaseLayout title="testTiel">
+  <div class="font-semibold">
+    <a class="back" href="/Paintings">View all years</a>
+    <span class="faded">/</span>
+    <a href={`/${destination}`}>Go to {destination}</a>
+  </div>
   <MasonryGrid artists={pieces} title={date}/>
 </BaseLayout>
 

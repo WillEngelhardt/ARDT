@@ -11,9 +11,13 @@ const { title, pieces } = Astro.props;
 
 const myPieces = pieces
 const ind: number = Math.floor(Math.random() * myPieces.length);
+
+
 ---
 <div class="sectionCard">
-<a href={`/${title}`} class="header">{title}</a>
+<span>
+  <a href={`/${title}`} class="header">{title}</a>
+</span>
 <a
   href={`/${title}`}
   style={`--image: url('${myPieces[ind].data.image.src}');`}

@@ -13,7 +13,8 @@ const grid = "artists";
 const pieces = await getCollection("artists");
 
 const mediums = ["Watercolor", "Oil", "Acrylic", "Digital", "Gouache", "Other"];
-const portfolio = ["Paintings", "Illustrations", "Sculptures and Functional Ware", "Printmaking", "Digital"];
+//const portfolio = ["Paintings", "Illustrations", "Sculptures and Functional Ware", "Printmaking", "Digital"];
+const portfolio = ["Paintings", "Illustrations", "Sculptures and Functional Ware"];
 for (let i = portfolio.length-1; i >= 0; i--) {
   // first test if mediums[i] is a valid property in the data of any piece
   if ((!pieces.some((piece) => piece.data.hasOwnProperty(portfolio[i]))) ||
