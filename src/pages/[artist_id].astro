@@ -61,6 +61,9 @@ if (artist.data.secondary != undefined)
 //   }
 // })
 console.log(images);
+
+
+const visible = artist.data.Sold == 1;
 ---
 
 <BaseLayout title={artist.data.name}>
@@ -81,6 +84,7 @@ console.log(images);
      <span class="header text-2xl">{artist.data.Materials}</span>
      <span class="header text-2xl">{artist.data.Date}</span>
      <span class="header text-2xl">{artist.data.Dimensions}</span>
+     {visible && <span class="header text-2xl font-bold">Sold!</span>}
      <!-- <h4 class="header"><i>{artist.data.Date}</i></h4> -->
 <!--       
       <span class="header text-xl">{artist.data.Date}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{artist.data.Dimensions}</span> -->
@@ -152,7 +156,7 @@ console.log(images);
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-bottom: 1em;
+  margin-bottom: 0.2em;
 }
 .myUnderline {
   text-decoration: underline wavy;
