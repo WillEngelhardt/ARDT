@@ -14,7 +14,7 @@ export const getStaticPaths = async () => {
   const uniqueDateSet = new Set(artists.map(item => item.data.Date));
   let dateArray = []
   for (var date of uniqueDateSet) {
-    dateArray.push([date, artists.filter((art) => art.data.Date === date)])
+    dateArray.push([date, artists.filter((art) => (art.data.Date === date) && (art.data.Paintings === 1))])
   }
   const paths = dateArray.map((art) => {
     let date = art[0];

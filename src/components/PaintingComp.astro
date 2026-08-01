@@ -20,7 +20,7 @@ console.log(uniqueYears);
 
 <section class="SectionGrid">
   {Array.from(sortedYears).map((year) => <YearCard title={year} pieces={
-    pieces.filter((piece) => piece.data.Date === year)
+    pieces.filter((piece) => (piece.data.Date === year) && (piece.data.Paintings === 1))
   } />)}
 </section>
 
