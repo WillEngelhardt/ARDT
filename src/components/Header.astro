@@ -15,12 +15,18 @@ const routes = {
 // Determine the active route
 const activeRoute = null;//routes[currentPath] || null;
 ---
-
 <header>
-  <h1>
+  <a href="/" class={activeRoute === "Home" ? "current" : ""} style="max-height: 90px;">
+  <img src="/src/assets/IMG_3093.png" style="max-height: 80px;">
+  </a>
+  <a href="/" class={activeRoute === "Home" ? "current" : ""} style="max-height: 120px;">
+  <img src="/src/assets/IMG_3096.png" style="max-height: 70px;">
+  </a>
+  <!-- <h1>
     <a href="/" class={activeRoute === "Home" ? "current" : ""}
+    style="--image: url(/src/assets/IMG_3093.png);"
       ><TextSlider content="ARDT of Emily" /></a>
-  </h1>
+  </h1> -->
   <span/>
   <ul>
     <li>
@@ -58,6 +64,7 @@ const activeRoute = null;//routes[currentPath] || null;
 <Separator />
 
 <style>
+
   header {
     /* position: sticky; */
     top: 0;
@@ -67,10 +74,14 @@ const activeRoute = null;//routes[currentPath] || null;
   text-shadow: -10px -10px 1 #ffffff;
 
     display: grid;
-    grid-template-columns: min-content auto;
+    /* grid-template-columns: max-content auto auto auto auto; */
+    grid-template-columns: min-content auto auto;
     font-weight: 700;
     padding: 1rem 0;
+    padding-bottom: 0;
     gap: 1rem;
+    align-items: center;
+    font-size: 20px;
   }
   header a.current {
     pointer-events: none;
@@ -90,7 +101,7 @@ const activeRoute = null;//routes[currentPath] || null;
   }
   @media screen and (min-width: 50em) {
     header {
-      grid-template-columns: 20vw 1fr auto auto;
+      grid-template-columns: max-content auto auto auto auto;
     }
   }
 </style>
