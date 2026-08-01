@@ -5,8 +5,30 @@ const title = "Players Club - Contact";
 ---
 
 <BaseLayout title={title}>
-  <div class="content content--page">
-    <h1>Contact</h1>
-    <p>This is just an example page</p>
+  <div class="content content--page" >
+    <h1>Artist Statement</h1>
+    <br>
+    <div class="grid grid-cols-2">
+    <p style="text-justify: distribute;">
+      I make oil paintings of things I want to put in my pocket: 
+      a pigeon being cute, clouds, multicolored stripes, a waterfall, sunlight glistening through
+       my water bottle. Many of these things are predictable, sometimes forgettable, 
+       but holy in their own right. I paint what I think is a glimpse of heaven to keep it around me. 
+       Pulling from my camera roll, I use everyday references and alter the focal point by cropping 
+       and playing with positive and negative space. I transform scenes into colorful, textural homages. 
+       It is curious why many of us want to hold things close to our bodies. 
+       Although my work isn’t fit for a pocket, it is fit for those who look out for wondrous color 
+       and patterns in this world.
+    </p>
+    <img src="/src/assets/IMG_8770.jpg">
+    </div>
   </div>
 </BaseLayout>
+
+<style>
+  p {
+    padding: 3px;
+    text-justify: auto;
+    justify-content: center;
+  }
+</style>
