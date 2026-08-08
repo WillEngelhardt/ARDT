@@ -9,15 +9,17 @@ type Props = {
 
 const { title, pieces } = Astro.props;
 
-const myPieces = pieces
-const ind: number = Math.floor(Math.random() * myPieces.length);
+const keyPieces = pieces.filter((piece) => piece.data.KeyFrame == 1);
+console.log(keyPieces)
+const ind: number = Math.floor(Math.random() * keyPieces.length);
+//go directly to newest year
 const destination = (title === "Paintings") ? "2026" : title;
 ---
 <div class="sectionCard">
 <a href={`/${destination}`} class="header">{title}</a>
 <a
   href={`/${destination}`}
-  style={`--image: url('${myPieces[ind].data.image.src}');`}
+  style={`--image: url('${keyPieces[ind].data.image.src}');`}
   class="artist"
   >
 </a>

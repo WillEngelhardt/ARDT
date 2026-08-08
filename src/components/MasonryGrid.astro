@@ -14,6 +14,11 @@ type Props = {
 const { artists, title } = Astro.props;
 const grid = "artists";
 
+const sortedArt = artists.sort((a,b) => {
+  const date1 = a.data.Date;
+  const date2 = b.data.Date;
+  return date2 - date1;
+})
 
 ---
 <span class="text-4xl flex justify-center">{title}</span>
@@ -30,7 +35,7 @@ const grid = "artists";
   debug={true}
 >
 
-  {artists.map((artist) => <MasronyCard artist={artist}/>)}
+  {sortedArt.map((artist) => <MasronyCard artist={artist}/>)}
 
 </Masonry>
 </section>
