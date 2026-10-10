@@ -3,7 +3,6 @@ import type { CollectionEntry } from "astro:content";
 import { getCollection, render } from "astro:content";
 import BaseLayout from "../layouts/BaseLayout.astro";
 import Separator from "../components/Separator.astro";
-import AlbumGrid from "../components/AlbumGrid.astro";
 import ArtistGrid from "../components/ArtistGrid.astro";
 import ArtShowcase from "../components/ArtShowcase.astro";
 import MasonryGrid from "../components/MasonryGrid.astro";
@@ -12,7 +11,7 @@ export const getStaticPaths = async () => {
   // Fetch all artists from the 'artists' collection
   const artists = await getCollection("artists");
   const uniqueDateSet = new Set(artists.map(item => item.data.Date));
-  let dateArray = []
+  const dateArray : any[] = [];
   for (var date of uniqueDateSet) {
     dateArray.push([date, artists.filter((art) => (art.data.Date === date) && (art.data.Paintings === 1))])
   }

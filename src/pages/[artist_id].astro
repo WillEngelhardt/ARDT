@@ -3,9 +3,7 @@ import type { CollectionEntry } from "astro:content";
 import { getCollection, render } from "astro:content";
 import BaseLayout from "../layouts/BaseLayout.astro";
 import Separator from "../components/Separator.astro";
-import AlbumGrid from "../components/AlbumGrid.astro";
 import { imageConfig } from "astro:assets";
-import { nan, undefined } from "astro:schema";
 
 export const getStaticPaths = async () => {
   // Fetch all artists from the 'artists' collection
@@ -42,11 +40,7 @@ const nextPieceIndex = (currentArtistIndex + 1) % artists.length;
 // Get the "next" artist based on the calculated index
 const nextPiece = artists[nextPieceIndex];
 
-// Fetch all albums that belong to the current artist
-const albums = await getCollection(
-  "albums",
-  ({ data }) => data.artist === artist_id,
-);
+
 let images = Array();
 if (artist.data.secondary != undefined)
   images = artist.data.secondary.src;
@@ -99,7 +93,7 @@ const visible = artist.data.Sold == 1;
           />
   </div>
     <!-- Thumbnails -->
-     <div class="testGrid grid md:block grid-cols-3">
+     <div class="testGrid grid grid-cols-6 md:grid-cols-1">
         {
             images.map((img: string, index: number) => (
               <div class="thumbnailImgs">
@@ -109,7 +103,7 @@ const visible = artist.data.Sold == 1;
                 >
                     <img
                         src={img}
-                        class="w-full h-full object-cover rounded-xl"
+                        class="thumbImg w-full h-full object-cover rounded-xl"
                         alt={`Thumbnail ${index + 1}`}
                     />
                 </button>
@@ -124,22 +118,37 @@ const visible = artist.data.Sold == 1;
 <style>
   .mainImgDiv {
     max-height: 80vh;
+    padding: 0;
+    margin: 0;
+  }
+  .thumbImg {
+    max-height: 90%;
   }
 .thumbnailImgs {
-  max-width: 30%;
   align-items: center;
   display: block;
   align-content: center;
   justify-content: center;
+  max-height: 100%;
+  object-fit: cover;
+
+  
 }
 .product-gallery {
-  gap: 5px;
-  padding: 5px;
   grid-template-columns: 1fr fit-content(80%) 1fr;
 }
 /* @media screen and  {
   
 } */
+ .testGrid {
+  max-width: 70vw;
+  align-items: baseline;
+  padding-top: 15px;
+ @media screen and (min-width: 768px) {
+  max-width: 10vw;
+  
+ }
+ }
 /* .testGrid {
   align-self: center;
   object-fit: contain;
@@ -170,6 +179,7 @@ const visible = artist.data.Sold == 1;
 
 <script>
     function setupGallery() {
+      console.log("ASDFASDFLJAEWFOIJ")
         const mainImage = document.getElementById(
             "main-product-image",
         ) as HTMLImageElement;

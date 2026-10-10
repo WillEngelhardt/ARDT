@@ -94,3 +94,10 @@ document.addEventListener('astro:page-load', () => {
 document.addEventListener('astro:before-swap', () => {
   handlePageEvent('before-swap', cleanup);
 });
+
+document.addEventListener('mouseenter', () => {
+
+});
+document.addEventListener('mouseleave', () => {
+
+});

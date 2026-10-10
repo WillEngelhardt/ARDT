@@ -11,7 +11,7 @@ type Props = {
 
 const { artist } = Astro.props;
 const images = import.meta.glob<{ default: ImageMetadata }>('/src/art/*.{jpeg,jpg,png,gif}');
-//console.log(images['/src/art/3pm.jpg'])
+console.log(artist.data.image.src)
 if (!images[artist.data.image.src]) throw new Error(`"${artist.data.image.src}" does not exist in glob: "src/*.{jpeg,jpg,png,gif}"`);
 ---
 <a
@@ -23,7 +23,7 @@ if (!images[artist.data.image.src]) throw new Error(`"${artist.data.image.src}" 
   data-astro-prefetch
   aria-label={artist.data.name}>
 
-  <Image src={images[artist.data.image.src]()} alt={artist.data.name} inferSize={true} 
+  <Image src={images[artist.data.image.src]()} alt={artist.data.name} 
         class="test" loading="lazy"></Image>
 </a>
 
