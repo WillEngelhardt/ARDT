@@ -19,7 +19,7 @@ export const getStaticPaths = async () => {
     let date = art[0];
     let pieces = art[1];
     return {
-      params: { date_id: art[0] }, // URL parameter for the artist's ID
+      params: { date_id: String(art[0]) }, // URL parameter for the artist's ID
       props: { pieces, date }, // Pass the full artist and all artists as props
     };
   });

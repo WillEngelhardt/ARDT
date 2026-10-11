@@ -102,7 +102,7 @@ const images = import.meta.glob<{ default: ImageMetadata }>('/src/art/*.{jpeg,jp
               <div class="thumbnailImgs">
                 <button
                     class="cursor-pointer thumbnail-btn rounded-2xl overflow-hidden border-2 transition-all p-1 bg-slate-50 border-slate-100"
-                    data-image={img}
+                    data-image={images[img]()}
                 >
                     <Image
                         src={images[img]()}
@@ -196,6 +196,8 @@ const images = import.meta.glob<{ default: ImageMetadata }>('/src/art/*.{jpeg,jp
 </style>
 
 <script>
+import { resolveSrc } from "astro/assets/utils";
+
     function setupGallery() {
       console.log("ASDFASDFLJAEWFOIJ")
         const mainImage = document.getElementById(
@@ -206,7 +208,9 @@ const images = import.meta.glob<{ default: ImageMetadata }>('/src/art/*.{jpeg,jp
         thumbnailBtns.forEach((btn) => {
             btn.addEventListener("click", () => {
                 const newSrc = btn.getAttribute("data-image");
-                if (newSrc && mainImage) {
+                //if (newSrc && mainImage) {  
+                if (newSrc != null) {
+                  console.log(newSrc)
                   mainImage.animate({
                     opacity: 0,
                   }, {
@@ -238,7 +242,8 @@ const images = import.meta.glob<{ default: ImageMetadata }>('/src/art/*.{jpeg,jp
                         "ring-primary/10",
                     );
                     btn.classList.remove("border-slate-100", "bg-slate-50");
-                }
+               // }
+                  }
             });
         });
 
