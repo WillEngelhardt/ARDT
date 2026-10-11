@@ -4,6 +4,7 @@ import { getCollection, render } from "astro:content";
 import BaseLayout from "../layouts/BaseLayout.astro";
 import Separator from "../components/Separator.astro";
 import { imageConfig } from "astro:assets";
+import { Image } from "astro:assets";
 
 export const getStaticPaths = async () => {
   // Fetch all artists from the 'artists' collection
@@ -41,9 +42,9 @@ const nextPieceIndex = (currentArtistIndex + 1) % artists.length;
 const nextPiece = artists[nextPieceIndex];
 
 
-let images = Array();
+let secondaryImages = Array();
 if (artist.data.secondary != undefined)
-  images = artist.data.secondary.src;
+  secondaryImages = artist.data.secondary.src;
 // artists.forEach(img => {
 //   if (img.data.hasOwnProperty('secondary')) {
 //     console.log(img.data.secondary);
@@ -54,10 +55,11 @@ if (artist.data.secondary != undefined)
 //     return null;
 //   }
 // })
-console.log(images);
+console.log(secondaryImages);
 
 
 const visible = artist.data.Sold == 1;
+const images = import.meta.glob<{ default: ImageMetadata }>('/src/art/*.{jpeg,jpg,png,gif}');
 ---
 
 <BaseLayout title={artist.data.name}>
@@ -82,27 +84,28 @@ const visible = artist.data.Sold == 1;
      <!-- <h4 class="header"><i>{artist.data.Date}</i></h4> -->
 <!--       
       <span class="header text-xl">{artist.data.Date}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{artist.data.Dimensions}</span> -->
-<div class="product-gallery md:grid md:grid-cols-2 ">
+<div class="product-gallery grid grid-cols-2 ">
   <div></div>
   <div class="mainImgDiv">
-          <img
+          <Image
             class="image fade-in"
             id="main-product-image"
-            src={artist.data.image.src}
+            layout="constrained"
+            src={images[artist.data.image.src]()}
             alt={artist.data.image.alt}
           />
   </div>
     <!-- Thumbnails -->
      <div class="testGrid grid grid-cols-6 md:grid-cols-1">
         {
-            images.map((img: string, index: number) => (
+            secondaryImages.map((img: string, index: number) => (
               <div class="thumbnailImgs">
                 <button
                     class="cursor-pointer thumbnail-btn rounded-2xl overflow-hidden border-2 transition-all p-1 bg-slate-50 border-slate-100"
                     data-image={img}
                 >
-                    <img
-                        src={img}
+                    <Image
+                        src={images[img]()}
                         class="thumbImg w-full h-full object-cover rounded-xl"
                         alt={`Thumbnail ${index + 1}`}
                     />
@@ -119,10 +122,15 @@ const visible = artist.data.Sold == 1;
   .mainImgDiv {
     max-height: 80vh;
     padding: 0;
-    margin: 0;
+    align-items: center;
+    margin-bottom: 1em;
   }
   .thumbImg {
-    max-height: 90%;
+    max-height: 12vh;
+    width: fit-content;
+    padding: 5px;
+    margin: 5px;
+    border-radius: 20px;
   }
 .thumbnailImgs {
   align-items: center;
@@ -130,32 +138,42 @@ const visible = artist.data.Sold == 1;
   align-content: center;
   justify-content: center;
   max-height: 100%;
-  object-fit: cover;
+  object-fit: contain;
 
   
 }
 .product-gallery {
+  display: grid;
   grid-template-columns: 1fr fit-content(80%) 1fr;
+  max-height: 80vh;
 }
 /* @media screen and  {
   
 } */
- .testGrid {
+ /* .testGrid {
   max-width: 70vw;
   align-items: baseline;
   padding-top: 15px;
  @media screen and (min-width: 768px) {
   max-width: 10vw;
-  
  }
- }
+ } */
 /* .testGrid {
   align-self: center;
   object-fit: contain;
   max-height: 50vh;
 } */
+ .testGrid {
+  max-height: 70vh;
+  align-self: center;
+  object-fit: contain;
+  justify-content: baseline;
+  align-items: baseline;
+ }
 #main-product-image {
-  height: 90%;
+  max-height: 80vh;
+  width: fit-content;
+  margin: 0 auto;
 }
 /* img {
   display: block;

@@ -1,6 +1,7 @@
 ---
 import TextSlider from "../components/TextSlider.astro";
 import Separator from "../components/Separator.astro";
+import { Image } from "astro:assets";
 
 // Get the current pathname
 const currentPath = Astro.url.pathname;
@@ -14,14 +15,24 @@ const routes = {
 };
 // Determine the active route
 const activeRoute = null;//routes[currentPath] || null;
+
+import img1 from '/src/assets/IMG_3093.png';
+import img2 from '/src/assets/IMG_3096.png';
 ---
 <header>
   <ul>
   <a href="/" class={activeRoute === "Home" ? "current" : ""} style="max-height: 90px;">
-  <img src="/src/assets/IMG_3093.png" style="max-height: 80px;">
+  <Image 
+    src={img1}
+    alt="asdf"
+    width="150"
+    height="150" fit='contain' 
+    style="max-height: 80px;"
+  />
   </a>
   <a href="/" class={activeRoute === "Home" ? "current" : ""} style="max-height: 120px;">
-  <img src="/src/assets/IMG_3096.png" style="max-height: 70px;">
+  <Image src={img2} alt="Emily Engelhardt" fit='contain' style="max-height: 70px;"
+    />
   </a>
   </ul>
   <!-- <h1>
@@ -95,6 +106,9 @@ const activeRoute = null;//routes[currentPath] || null;
   }
   header a.current {
     pointer-events: none;
+  }
+  header img {
+    width: fit-content;
   }
   h1 {
     font-size: 1rem;
